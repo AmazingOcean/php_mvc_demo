@@ -12,14 +12,14 @@ class Application {
         define("DATABASE",include("./config/DataBase.php"));
 
         //引入 ControolerFactory
-        require_once("./core/controller/ControolerFactory.php");
-        require_once("./core/util/Util.php")
+        require_once("./core/controller/ControllerFactory.php");
+        require_once("./core/util/Util.php");
 
         Application::$center = new Center();
         Application::$center->__initial();
 
-        ControolerFactory::loadClass();
-        ControolerFactory::newInstanceController("/index/index/demo");
+        ControllerFactory::loadClass();
+        ControllerFactory::newInstanceController("/index/index/demo");
     } 
 
     public static function demo(){

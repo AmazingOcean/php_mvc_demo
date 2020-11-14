@@ -5,7 +5,7 @@
 /**
  * 控制器工厂
  */
-class ControolerFactory
+class ControllerFactory
 {
 
     // 控制器文件缓存区
