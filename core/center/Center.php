@@ -7,6 +7,7 @@ class Center
 {
 
     public $connection;
+    public $controolerFactory;
 
     public function __initial(){
 

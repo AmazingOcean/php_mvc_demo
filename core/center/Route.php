@@ -8,7 +8,7 @@ class Route {
     
     public static function __refresh(){
         Route::$context = new RouterContext();
-
+        
     }
 
     public static function __loadUrl(){
