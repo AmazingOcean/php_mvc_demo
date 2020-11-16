@@ -2,17 +2,27 @@
 
 class RouterContext {
 
+    //POST GET 熟悉容器
     public $attributes;
+    //全URL
     public $request_url;
+    //请求方法
     public $method;
+    //控制器方法
+    public $func;
+    //控制器
+    public $controller;
     
     public function __construct()
     {
         $this->attributes = $_SERVER['REQUEST_METHOD'] == "GET" ? $_GET : $_POST;
-        $this->request_url = $_SERVER["REQUEST_URI"];
+        $this->request_url = explode("?",$_SERVER["REQUEST_URI"])[0];
         $this->method = $_SERVER['REQUEST_METHOD'];
-
-        // var_dump(ControolerFactory::filterControoler("index/IndexControoler/findName"));
+        
+        $strings = explode("/", $this->request_url);
+        $lastSize = count($strings) - 1;
+        $this->func = $strings[$lastSize];
+        $this->controller = str_replace("/". $this->func ,"",$this->request_url);
     }
 
     /**

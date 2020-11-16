@@ -4,6 +4,7 @@ require("RouterContext.php");
 
 class Route {
 
+    
     public static $context;
     
     public static function __refresh(){
