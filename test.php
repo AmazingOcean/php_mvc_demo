@@ -2,4 +2,7 @@
 
 
 
-echo preg_match("[/*11]","/index/index");
+echo preg_match("[/index/*]","/index/index");
+
+
+

@@ -2,7 +2,7 @@
 
 return [
     // 启动MySql服务
-    "mysql"                     => false,
+    "mysql"                     => true,
     // Debug 模式
     "debug"                     => true,
     // 异常配置
@@ -18,9 +18,20 @@ return [
         "intercpt"          =>  [
             ".\application\intercpt"
         ],
+        "view"              =>  ".\public\\",
+        # 对象模型
+        "model"             =>  [
+            ".\application\model"
+        ],
+        # 静态资源放行
+        "static"   => "./public/static"
     ],
     "router"            => [
         # url映射控制器是否强类型
-        "url_match_rule"     => false
+        "url_match_rule"        => false,
+        # 重定向
+        "redirect"              => [
+            "[/$]"         => "/index/index/demo"
+        ],
     ]
 ];

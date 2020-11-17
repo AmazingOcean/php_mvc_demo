@@ -64,8 +64,6 @@ class ControllerFactory
     public function findControllerClass()
     {
         $filterRouterResult = Route::$context->controller;
-        
-
         if($this->containsControllerClass($filterRouterResult)){
             $fileName = $this->queryControllerClass($filterRouterResult);
             require_once $fileName;

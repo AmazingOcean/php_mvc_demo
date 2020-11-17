@@ -22,6 +22,7 @@ class Application
         define("DATABASE", include("./config/DataBase.php"));
         //lib自动注入
         AutoLoadClass::loadClass();
+        AutoLoadClass::loadApplicationClass();
         // 拦截器自动注入
         IntercptStatic::loadApplicationClass();
         
@@ -37,16 +38,30 @@ class Application
         return $this;
     }
 
-
     //处理请求
-    public function distribute()
-    {
+    public function distribute() {
         try {
             //拦截器筛选拦截
             $unifyBool = IntercptStatic::unify();
             //如果没有控制器拦截则放行
             if (!$unifyBool){
-                echo $this->send();
+                $obj = $this->send();
+                $objType = gettype($obj);
+                
+                
+                //如果返回对象是object 
+                if ($objType == "object"){
+                    //如果是视图 那么就托管给Parser对象解析视图数据
+                    $classObject = new ClassObject($obj);
+                    if ($classObject->name == "ViewModel"){
+                        $viewParser = new ViewParser($obj);
+                        $viewParser->parser();
+                    } else {
+                        echo $obj;
+                    }
+                }else{
+                    echo $obj;
+                }
             }
         } catch (MVCException $e) {
             echo $e->parserHandler()->abnormalHTML($e);

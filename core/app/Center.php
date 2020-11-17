@@ -1,6 +1,5 @@
 <?php 
 
-require("./core/sql/Connection.php");
 require("./core/app/Route.php");
 
 class Center
